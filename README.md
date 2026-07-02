@@ -1,6 +1,6 @@
 # Aether - Plant Disease Detection
 
-Aether is a Flask web application for detecting apple leaf diseases from uploaded images. It uses an EfficientNet-B3 classifier built with PyTorch and timm, and generates detailed explanations and treatment guidance using Groq's LLM API.
+Aether is a Flask web application for detecting apple leaf diseases from uploaded images. It uses an EfficientNet-B3 classifier built with PyTorch and timm, and generates detailed explanations and treatment guidance using LLMs.
 
 ## Features
 
