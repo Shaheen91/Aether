@@ -1,5 +1,3 @@
-Copy-paste this exact README:
-
 ```markdown
 # Aether - Plant Disease Detection
 
