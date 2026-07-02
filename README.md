@@ -1,18 +1,17 @@
-```markdown
 # Aether - Plant Disease Detection
 
-Aether is a Flask web app for detecting apple leaf diseases from an uploaded image. It uses an EfficientNet-B3 classifier built with PyTorch and timm, then generates practical explanation and treatment guidance with Groq's LLM API.
+Aether is a Flask web application for detecting apple leaf diseases from uploaded images. It uses an EfficientNet-B3 classifier built with PyTorch and timm, and generates detailed explanations and treatment guidance using Groq's LLM API.
 
 ## Features
 
-- Upload apple leaf images through a clean web interface
-- Validate PNG, JPG, JPEG, and WEBP files
-- Detect 6 apple leaf classes: `complex`, `frog_eye_leaf_spot`, `healthy`, `powdery_mildew`, `rust`, `scab`
-- Show confidence scores for every class
-- Generate AI explanations and treatment guidance with Groq
-- Keep a browser-side diagnosis history
-- Provide a JSON prediction API
-- Store runtime uploads with randomized filenames
+- Image upload via web interface
+- Support for PNG, JPG, JPEG, and WEBP formats
+- Multi-label classification across 6 classes: `complex`, `frog_eye_leaf_spot`, `healthy`, `powdery_mildew`, `rust`, `scab`
+- Confidence scores for each class
+- AI-generated explanations and treatment recommendations
+- Client-side diagnosis history
+- JSON-based prediction API
+- Runtime image storage with randomized filenames
 
 ## Project Structure
 
@@ -45,9 +44,9 @@ Aether is a Flask web app for detecting apple leaf diseases from an uploaded ima
 
 ## Requirements
 
-- Python 3.10 or newer
+- Python 3.10+
 - Groq API key
-- Dependencies from `requirements.txt`
+- Dependencies listed in `requirements.txt`
 
 ## Setup
 
@@ -82,13 +81,13 @@ FLASK_HOST=0.0.0.0
 FLASK_PORT=5000
 ```
 
-Run the app:
+Run the application:
 
 ```bash
 python app.py
 ```
 
-Open in your browser:
+Access the app at:
 
 ```text
 http://localhost:5000
@@ -98,7 +97,7 @@ http://localhost:5000
 
 ### `POST /api/predict`
 
-Send an image using a multipart form field named `image`.
+Submit an image using a multipart form field named `image`.
 
 Example:
 
@@ -106,7 +105,7 @@ Example:
 curl -X POST http://localhost:5000/api/predict -F "image=@leaf.jpg"
 ```
 
-Success response:
+### Success Response
 
 ```json
 {
@@ -129,7 +128,7 @@ Success response:
 }
 ```
 
-Error response:
+### Error Response
 
 ```json
 {
@@ -148,24 +147,4 @@ Error response:
 - Detection threshold: `0.5`
 - Model weights path: `models/phase2_final.pth`
 
-The model is multi-label, so more than one disease can be detected from one leaf image. The `healthy` label is not treated as a disease detection.
-
-## Environment Variables
-
-| Variable | Default | Description |
-| --- | --- | --- |
-| `GROQ_API_KEY` | None | Required for AI explanations |
-| `GROQ_MODEL` | `llama-3.3-70b-versatile` | Groq model used for explanations |
-| `SECRET_KEY` | Development fallback | Flask session secret |
-| `FLASK_DEBUG` | `False` | Enables Flask debug mode |
-| `FLASK_HOST` | `0.0.0.0` | Flask host |
-| `FLASK_PORT` | `5000` | Flask port |
-
-## Notes
-
-- Do not commit `.env` or API keys.
-- Runtime uploads are ignored except for `uploads/.gitkeep`.
-- Python cache folders should not be committed.
-- The outer `PlantDisease` folder and zip archive are not part of this repository.
-- This app provides diagnostic support only and is not a replacement for professional agronomic advice.
-```
+The model supports multi-label predictions, allowing detection of multiple conditions in a single image. The `healthy` label represents absence of disease.
